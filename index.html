@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>부산 날씨</title>
 </head>
 <body>
@@ -16,9 +16,15 @@
     fetch(url)
       .then(res => res.json())
       .then(data => {
-        const temp = data.main.temp;
-        const desc = data.weather[0].description;
-        document.getElementById("weather").innerText = `기온: ${temp}℃, 날씨: ${desc}`;
+        if(data.main && data.weather) {
+          const temp = data.main.temp;
+          const desc = data.weather[0].description;
+          document.getElementById("weather").innerText = `기온: ${temp}℃, 날씨: ${desc}`;
+        } else if(data.message) {
+          document.getElementById("weather").innerText = `API 에러: ${data.message}`;
+        } else {
+          document.getElementById("weather").innerText = "날씨 정보를 불러올 수 없습니다.";
+        }
       })
       .catch((error) => {
         console.error("에러 발생:", error);
@@ -27,4 +33,3 @@
   </script>
 </body>
 </html>
-
