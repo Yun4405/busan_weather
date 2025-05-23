@@ -11,7 +11,8 @@
   <script>
     const apiKey = "900890e8a3df5b3761571d9689949d26";
     const city = "Busan";
-    const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric&lang=kr`;
+    const corsProxy = "https://cors-anywhere.herokuapp.com/";
+    const url = `${corsProxy}https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric&lang=kr`;
 
     fetch(url)
       .then(res => res.json())
@@ -33,3 +34,4 @@
   </script>
 </body>
 </html>
+
